@@ -36,8 +36,8 @@ impl ProcInfo {
 
 impl std::fmt::Display for ProcInfo {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "PID: {:<}", self.pid)
-            .and_then(|_| write!(f, ", Name: {}", self.name))
+        write!(f, "PID: {:<5}", self.pid)
+            .and_then(|_| write!(f, " | {}", self.name))
             .and_then(|_| {
                 // Be sure to check if the path is not empty
                 if let Some(path) = &self.path {
@@ -77,7 +77,7 @@ impl std::fmt::Display for ProcList {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let root = self.procs.get(&1);
         if let Some(root) = root {
-            writeln!(f, "Process: {}", root)?;
+            writeln!(f, "{}", root)?;
             // Plot the tree
             let mut visited = HashMap::new();
             visited.insert(root.pid, true);
@@ -92,7 +92,7 @@ impl std::fmt::Display for ProcList {
                         if let Some(child_proc) = self.procs.get(&child_pid) {
                             if let std::collections::hash_map::Entry::Vacant(e) = visited.entry(child_pid) {
                                 // Create proper indentation based on depth
-                                let indent = "|   ".repeat(depth + 1);
+                                let indent = "| ".repeat(depth + 1);
                                 writeln!(f, "{}└── {}", indent, child_proc)?;
                                 stack.push((child_proc, depth + 1));
                                 e.insert(true);
