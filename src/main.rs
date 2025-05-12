@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-use std::path::{Display, Path, PathBuf};
+use std::path::{Path, PathBuf};
 
 use libproc::bsd_info::BSDInfo;
 use libproc::proc_pid::{name, pidcwd, pidinfo};
