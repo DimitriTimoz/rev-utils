@@ -91,7 +91,7 @@ impl std::fmt::Display for ProcList {
                         if let Some(child_proc) = self.procs.get(&child_pid) {
                             if let std::collections::hash_map::Entry::Vacant(e) = visited.entry(child_pid) {
                                 // Create proper indentation based on depth
-                                let indent = "    ".repeat(depth + 1);
+                                let indent = "|   ".repeat(depth + 1);
                                 writeln!(f, "{}└── {}", indent, child_proc)?;
                                 stack.push((child_proc, depth + 1));
                                 e.insert(true);
