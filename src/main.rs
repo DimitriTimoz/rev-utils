@@ -13,6 +13,7 @@ pub struct ProcInfo {
     path: Option<PathBuf>,
     parent: Option<i32>,
 }
+
 impl ProcInfo {
     fn new(pid: i32, name: String) -> Self {
         let path = pidcwd(pid).ok();
