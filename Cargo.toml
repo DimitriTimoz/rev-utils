@@ -1,0 +1,8 @@
+[package]
+name = "rev-utils"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+clap = "4.5.38"
+libproc = "0.14.10"
